@@ -1,0 +1,216 @@
+SQL
+
+Business logic: Also called "domain logic", is the part of the program that encodes the real-world business rules that determine how data can be created, displayed, stored, and changed
+
+Data Access Layer (DAL): logical layer of a computer program which provides simplified access to data stored in persistent storage (like a database)
+-point where the interactions between an application and a database exist
+-coordinates accessing data
+
+HAVING clause specifies that a SQL SELECT statement should only return rows where aggregate values meet the specified conditions
+
+Inner Join statement- used to return data from all rows where there is matching data shared between the two table columns
+ex.
+
+SELECT * FROM table_A
+SELECT * FROM table_A INNER JOIN table_B ON table_B.id = table_A.id;
+
+OUTER JOIN statement- used to return all records of data from both tables despite whether there is any actual relational link between the two tables.
+ex. 
+
+SELECT table_A.username, table_A.fullname, table_B.zipcodes
+FROM table_A 
+FULL OUTER JOIN table_B
+WHERE table_B.id = table_A.id;
+
+Left Join statement-  used to return all records of data from the left table and any related data from the right table and if there happens to be rows of data that is not matching the criteria, then it will be represented by Null values
+ex. 
+
+SELECT table_A.id, table_A.username, table_B.id, table_B.phoneNumber 
+FROM table_A
+LEFT JOIN table_B ON table_B.id = table_A.id;
+
+Right Join statement-used to return data from from the right table and any related data from the left table and in the event there is data that does not match it will be reflected by a Null value.
+ex. 
+
+SELECT table_A.wholesale, table_A.products, table_B.vendor, table_B.contact 
+FROM table_A
+RIGHT JOIN table_B ON table_B.id = table_A.id;
+WHERE table_A.id LIKE 'de%';
+
+
+
+SELECT * FROM tbl_animalia;
+NOT NULL cannot be empty
+
+primary key does not need an ID
+
+UPDATE tbl_class SET class_type = 'birds' WHERE class-type = 'bird';
+(permanent change)
+
+SELECT REPLACE(class_type, 'bird', 'birds') FROM tbl_class;
+(temporary)
+
+SELECT class_type FROM tbl_class WHERE class_type = 'bird';
+
+SELECT UPPER (class_type) FROM tbl_class WHERE class_type = 'bird';
+
+CREATE TABLE tbl_persons (
+	persons_id INT PRIMARY KEY NOT NULL IDENTITY (1,1),
+	persons_fname VARCHAR (50) NOT NULL,
+	persons_lname VARCHAR (50) NOT NULL,
+	persons_contact VARCHAR (50) NOT NULL
+);
+
+INSERT INTO tbl_persons
+	(persons_fname, persons_lname, persons_contact)
+	VALUES
+	('bob', 'smith', '232-345-5678'),
+	('spongebob', 'squarepants', '232-345-5678'),
+	('patrick', 'star', '232-345-5678'),
+	('robert', 'smith', '232-345-5678'),
+	('john', 'smith', '232-345-5678')
+;
+
+UPDATE tbl_persons SET persons_fname = 'mars' WHERE persons_fname = 'bob';
+
+SELECT persons_fname, persons_lname, persons_contact FROM tbl_persons WHERE persons_id BETWEEN 2 AND 5;
+
+SELECT persons_fname, persons_lname, persons_contact FROM tbl_persons WHERE persons_lname LIKE 'st%';
+(wildcard operators)
+
+SELECT persons_fname, persons_lname, persons_contact FROM tbl_persons WHERE persons_lname LIKE 'u%s';
+(wildcard operators)
+
+SELECT persons_fname, persons_lname, persons_contact FROM tbl_persons WHERE persons_lname LIKE 'm%' ORDER BY persons_lname;
+(wildcard operators)
+
+SELECT persons_fname, persons_lname, persons_contact FROM tbl_persons WHERE persons_lname LIKE 'm%' ORDER BY persons_lname DESC;
+(wildcard operators)
+
+SELECT persons_fname AS 'Firstname', persons_lname AS 'Lastname', persons_contact AS 'Phone:' FROM tbl_persons WHERE persons_lname LIKE 'm%' ORDER BY persons_lname;
+(aliases)
+
+DELETE FROM tbl_persons WHERE persons_lname  = 'smith';
+(delete data from table)
+
+DROP TABLE tbl_persons;
+(delete entire table)
+
+data normalization
+
+inner joins referenced aliases
+
+stored procedure - is a script that cotains SqL instructions to perform an action which may be saved and called on at a later time.
+Transact-SQL (TSQL) extension to SQL, developers can extend the capabilities of SQL with variables and programming logic
+
+ex.
+
+DECLARE @var1 INT, @var2 INT
+SET @var1 = 3
+SET @var2 = 5
+PRINT 'Variable 1 = ' + CONVERT(varchar(5),@var1) + CHAR(13) + 'Variable 2 = ' + CONVERT(varchar(5),@var2)
+
+DRILL 7
+
+CREATE DATABASE student_assignment;
+
+CREATE TABLE tbl_customer (
+	customer_id int primary key NOT NULL identity (1,1),
+	customer_fname varchar(15) NOT NULL,
+	customer_lname varchar(20) NOT NULL
+);
+
+INSERT INTO tbl_customer (customer_fname, customer_lname)
+	VALUES
+	('Amy', 'Winehouse'),
+	('Jimi', 'Hendrix'),
+	('Janis', 'Joplin'),
+	('Kurt', 'Cobain'),
+	('Jim', 'Morrison')
+;
+
+SELECT * FROM tbl_customer
+
+CREATE TABLE tbl_car(
+	car_id int primary key NOT NULL identity (1, 1),
+	car_model varchar(20) NOT NULL,
+	car_make varchar(25) NOT NULL,
+	car_customer_id int NOT NULL constraint fk_customer_id foreign key references tbl_customer(customer_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+INSERT INTO tbl_car (car_model, car_make, car_customer_id)
+	VALUES
+	('Toyota', 'Yaris', 1),
+	('Toyota', 'Corolla', 2),
+	('Toyota', 'Camry', 3),
+	('Toyota', 'RAV4', 4),
+	('Toyota', 'CH-R', 5)
+;
+
+SELECT * FROM tbl_car;
+
+SELECT tbl_customer.customer_fname, tbl_customer.customer_lname, tbl_car.car_model, tbl_car.car_make
+FROM tbl_customer
+INNER JOIN tbl_car ON car_customer_id = customer_id;
+=============================================================================================================================
+DRILL 1
+SELECT * FROM tbl_habitat;
+
+DRILL 2
+SELECT * FROM tbl_species WHERE species_order = 3;
+
+DRILL 3
+SELECT * FROM tbl_nutrition WHERE nutrition_cost <= 600;
+
+DRILL 4
+SELECT * FROM tbl_species WHERE species_nutrition BETWEEN 2202 AND 2206;
+
+DRILL 5
+SELECT tbl_species.species_name AS 'Species Name', tbl_nutrition.nutrition_id AS 'Nutrition Type' FROM tbl_species JOIN tbl_nutrition ON tbl_species.species_nutrition = tbl_nutrition.nutrition_id;
+
+DRILL 6
+SELECT tbl_specialist.specialist_fname, tbl_specialist.specialist_lname, tbl_specialist.specialist_contact FROM tbl_specialist INNER JOIN tbl_care ON care_specialist = specialist_id INNER JOIN tbl_species ON species_care = care_id WHERE tbl_species.species_name ='penguin';
+
+IF EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES tbl_species)
+		DROP TABLE tbl_species, tbl_animalia, tbl_care, tbl_class, tbl_habitat, tbl_nutrition, tbl_order, tbl_specialist;
+
+try catch method
+
+USE [AdventureWorks2014]
+GO
+
+ALTER PROCEDURE [uspGetBillOfMaterials]
+    @StartProductID [int],
+    @CheckDate [datetime]
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    WITH [BOM_cte]([ProductAssemblyID], [ComponentID], [ComponentDesc], [PerAssemblyQty], [StandardCost], [ListPrice], [BOMLevel], [RecursionLevel])
+    AS (
+        SELECT b.[ProductAssemblyID], b.[ComponentID], p.[Name], b.[PerAssemblyQty], p.[StandardCost], p.[ListPrice], b.[BOMLevel], 0
+        FROM [Production].[BillOfMaterials] b
+            INNER JOIN [Production].[Product] p 
+            ON b.[ComponentID] = p.[ProductID] 
+        WHERE b.[ProductAssemblyID] = @StartProductID 
+            AND @CheckDate >= b.[StartDate] 
+            AND @CheckDate <= ISNULL(b.[EndDate], @CheckDate)
+			AND @CheckDate >= ISNULL(b.[StartDate], @CheckDate)
+        UNION ALL
+        SELECT b.[ProductAssemblyID], b.[ComponentID], p.[Name], b.[PerAssemblyQty], p.[StandardCost], p.[ListPrice], b.[BOMLevel], [RecursionLevel] + 1 
+        FROM [BOM_cte] cte
+            INNER JOIN [Production].[BillOfMaterials] b 
+            ON b.[ProductAssemblyID] = cte.[ComponentID]
+            INNER JOIN [Production].[Product] p 
+            ON b.[ComponentID] = p.[ProductID] 
+        WHERE @CheckDate >= b.[StartDate] 
+            AND @CheckDate <= ISNULL(b.[EndDate], @CheckDate)
+			AND @CheckDate >= ISNULL(b.[StartDate], @CheckDate)
+        )
+
+    SELECT b.[ProductAssemblyID], b.[ComponentID], b.[ComponentDesc], SUM(b.[PerAssemblyQty]) AS [TotalQuantity] , b.[StandardCost], b.[ListPrice], b.[BOMLevel], b.[RecursionLevel]
+    FROM [BOM_cte] b
+    GROUP BY b.[ComponentID], b.[ComponentDesc], b.[ProductAssemblyID], b.[BOMLevel], b.[RecursionLevel], b.[StandardCost], b.[ListPrice]
+    ORDER BY b.[BOMLevel], b.[ProductAssemblyID], b.[ComponentID]
+    OPTION (MAXRECURSION 50) 
+END;

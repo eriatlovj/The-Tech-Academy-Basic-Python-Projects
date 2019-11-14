@@ -1,0 +1,62 @@
+What is the difference between inner and outer join?
+An inner join finds and returns the matching data from the tables, while on the other hand, an outer join finds and returns the matching data and some dissimilar data from the tables.
+Code injection is when one intentionally causes a computer bug by processing invalid data. Code injection can be used by an attacker to introduce (or "inject") code into a computer program to change the course of execution. 
+
+SQL injection attack-used to attack data-driven applications, in which malicious SQL statements are inserted into an entry field for execution
+=============================================================================================================================
+What is the definition of a key?
+A key is a subset of columns within a table that allow a row to be uniquely identified.
+
+What are the differences between primary, foreign, and unique keys? Why would you have a key that references one table used in another table?
+A primary key is a column of table which uniquely identifies each row in a table. A unique key also identifies an individual row uniquely in a relation or table. A table can have only primary key whereas there can be multiple unique key on a table. The foreign key's purpose ensure referential integrity of the data, which means only values that are supposed to appear in the database are permitted. A foreign key enforces a link between the data in two tables. It is important to have a key that is used to reference one table to another because it prevents actions that would lead to the destruction of the links between the tables.
+
+What is the definition of a natural key? Give an example of a natural key.
+A natural key is a column or set of columns that already exist in the table. It provides a means of identification for data and it also imposes a rule, specifically a uniqueness constraint, to ensure that data remains unique within an information system.  An example of a natural key would be an individual's Social Security Number.
+
+What is a simple key in a DBMS?
+A simple key is just a single attribute, which is just a column, that can uniquely identify a row. any single column in a table that can uniquely identify a row is a simple key.
+
+What is the definition of a secondary key?
+A Secondary key which has not been selected to be the primary key. However, it is considered as a candidate key for the primary key.
+
+What is the definition of a superkey? Provide an example of a superkey.
+A superkey is a combination of columns that uniquely identifies any row within a RDBMS table. An example of a superley in a schema would be {employeeID, Name, job}.
+
+What is referential integrity?
+A referential integrity is a relational database concept, which states that table relationships must always be consistent. Its purpose is to make sure that any foreign key field must agree with the primary key that is being referenced by the foreign key.
+
+What is the difference between the having clause and the where clause?
+The main difference between where and having clause is that, the condition specified in the where clause is used while fetching data (rows) from table, and the data which does not pass the condition will not be fetched into result set, while on the other hand the having clause is later used to filter the summarized data or the grouped data. 
+
+How do database indexes work? How do indexes help?
+Database indexing is a way of sorting a number of records on multiple fields. It contains keys built from one or more columns in the table or view. These keys are stored in a structure.  Database indexes help speed up retrieval of data by providing the database with quick jump points on where to find the database row.
+=============================================================================================================================
+What is data-driven programming?
+Data-driven programming is a style of programming in which specialization is done through data structures. The data itself controls the flow of the program and not the program logic.
+
+What is a database-driven website?
+A database-driven website uses database for collecting and storing information. A database stores information in a structured way using tables on a web server.
+
+What is the data access layer?
+A data access layer is layer of a computer program that provides a simplified access to data stored in an entity-relational database. comprises of a collection of classes, interfaces and their methods and properties that are used to perform CRUD (Create, Read, Update and Delete) operations in the application. It encapsulates the code that is used to connect to the database and perform these operations and it actually works as a link between the business entities in your application and the actual data storage layer.
+
+In SQL, what is the INSERT statement?
+The INSERT statement is used to add new data to a database. 
+
+In SQL, what is the SELECT statement?
+The SELECT statement, when used, returns a result set of records from one or more tables. 
+
+In SQL, what is the ORDER BY clause?
+The ORDER BY clause is used to sort the data in ascending or descending order, based on one or more columns.
+
+In SQL, what is OUTER JOIN?
+An OUTER JOIN in SQL is used to match rows from two tables. In an OUTER JOIN, unmatched rows in one or both tables can be returned.
+
+In SQL, what is INNER JOIN?
+An INNER JOIN in SQL combines rows from two or more tables. It uses a comparison operator to match rows from two tables based on the values in common columns from each table.
+
+In SQL, what is the WHERE clause?
+A WHERE clause in SQL is used to pull out records that only fulfills a specified condition. 
+
+In SQL, what is the DELETE command?
+The DELETE command in SQL removes one or more records from a specified table.
